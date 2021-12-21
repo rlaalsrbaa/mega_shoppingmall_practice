@@ -64,7 +64,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            BASE_DIR / 'base/templates',
+            BASE_DIR / 'templates',
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -86,9 +86,9 @@ WSGI_APPLICATION = 'base.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'site224',
-        'USER': 'sbsst',
-        'PASSWORD': 'sbs123414',
+        'NAME': 'mysite',
+        'USER': 'root',
+        'PASSWORD': '',
         'HOST': '127.0.0.1',
         'PORT': '3306',
         'OPTIONS': {
