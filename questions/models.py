@@ -9,7 +9,7 @@ from accounts.models import User
 class Question(models.Model):
     reg_date = models.DateTimeField('등록날짜', auto_now_add=True)
     update_date = models.DateTimeField('갱신날짜', auto_now=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True)
     content_type = models.ForeignKey(ContentType, related_name="content_type_question", on_delete=models.DO_NOTHING)
     object_id = models.PositiveIntegerField('관련 데이터 번호')
     content_object = GenericForeignKey('content_type', 'object_id')
@@ -20,6 +20,6 @@ class Question(models.Model):
 class Answer(models.Model):
     reg_date = models.DateTimeField('등록날짜', auto_now_add=True)
     update_date = models.DateTimeField('갱신날짜', auto_now=True)
-    question = models.ForeignKey(Question, on_delete=models.CASCADE)
+    question = models.OneToOneField(Question, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     body = models.TextField('내용')

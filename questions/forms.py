@@ -1,8 +1,9 @@
-from django import forms
+from django.forms import ModelForm
+
 from .models import Question
 
 
-class QuestionForm(forms.ModelForm):
+class QuestionForm(ModelForm):
     class Meta:
-        model = Question  # 사용할 모델
-        fields = ['body']  # QuestionForm에서 사용할 Question 모델의 속성
+        model = Question
+        fields = ['body']

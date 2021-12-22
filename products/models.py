@@ -1,8 +1,8 @@
 from django.db import models
-
+from django.contrib.contenttypes.fields import GenericRelation
 # Create your models here.
 from markets.models import Market
-
+from questions.models import Question
 
 class Product(models.Model):
     reg_date = models.DateTimeField('등록날짜', auto_now_add=True)
@@ -20,12 +20,12 @@ class Product(models.Model):
     hit_count = models.PositiveIntegerField('조회수', default=0)
     review_count = models.PositiveIntegerField('리뷰수', default=0)
     review_point = models.PositiveIntegerField('리뷰평점', default=0)
-
+    questions = GenericRelation(Question, related_query_name="question")
 
 class ProductReal(models.Model):
     reg_date = models.DateTimeField('등록날짜', auto_now_add=True)
     update_date = models.DateTimeField('갱신날짜', auto_now=True)
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='product_reals')
     option_1_type = models.CharField('옵션1 타입', max_length=10, default='SIZE')
     option_1_name = models.CharField('옵션1 이름(내부용)', max_length=50)
     option_1_display_name = models.CharField('옵션1 이름(고객용)', max_length=50)
